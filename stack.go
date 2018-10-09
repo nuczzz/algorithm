@@ -9,9 +9,7 @@ type Stack struct {
 	elements  []interface{}
 }
 
-const (
-	defaultStackLength = 3
-)
+const defaultStackLength = 3
 
 var (
 	ErrStackUnderflow = errors.New("stack underflow")
