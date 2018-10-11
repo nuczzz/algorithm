@@ -1,12 +1,12 @@
-package algorithm
+package stack
 
 import "testing"
 
 const stackLength = 3
 
-func TestNewDefaultStack(t *testing.T) {
+func TestArrayStack(t *testing.T) {
 	// create a new stack
-	stack := NewDefaultStack()
+	stack := NewArrayStack(0)
 
 	// underflow test
 	_, err := stack.Pop()
@@ -21,13 +21,11 @@ func TestNewDefaultStack(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
+		t.Logf("push element: %v\n", i)
 	}
 	// get stack elements list
 	list := stack.List()
-	for ele := range list {
-		t.Logf("push element: %v\n", ele)
-	}
-	t.Logf(">>push element test success")
+	t.Logf(">>stack list: (bottom)%v", list)
 
 	// overflow test
 	err = stack.Push(11)

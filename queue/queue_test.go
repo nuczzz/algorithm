@@ -1,12 +1,12 @@
-package algorithm
+package queue
 
 import "testing"
 
 const queueLength = 3
 
-func TestNewDefaultQueue(t *testing.T) {
+func TestNewArrayQueue(t *testing.T) {
 	// create a new queue
-	queue := NewDefaultQueue()
+	queue := NewArrayQueue(queueLength)
 
 	// underflow test
 	_, err := queue.Pop()
@@ -21,13 +21,12 @@ func TestNewDefaultQueue(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
+		t.Logf("push element: %v\n", i)
 	}
+
 	// get queue elements list
 	list := queue.List()
-	for ele := range list {
-		t.Logf("push element: %v\n", ele)
-	}
-	t.Logf(">>push element test success")
+	t.Logf(">>queue list: (bottom)%v", list)
 
 	// overflow test
 	err = queue.Push(11)

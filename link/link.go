@@ -1,4 +1,4 @@
-package algorithm
+package link
 
 type LinkNode struct {
 	Data interface{}

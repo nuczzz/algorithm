@@ -1,37 +1,37 @@
-package algorithm
+package stack
 
 import (
 	"errors"
 )
 
-type Stack struct {
+type ArrayStack struct {
 	maxLength int
 	elements  []interface{}
 }
 
-const defaultStackLength = 3
+const defaultArrayStackLength = 3
 
 var (
 	ErrStackUnderflow = errors.New("stack underflow")
 	ErrStackOverflow  = errors.New("stack overflow")
 )
 
-func NewStack(length int) *Stack {
-	return &Stack{
+func NewArrayStack(length int) Stack {
+	if length <= 0 {
+		length = defaultArrayStackLength
+	}
+
+	return &ArrayStack{
 		maxLength: length,
 		elements:  make([]interface{}, 0, length),
 	}
 }
 
-func NewDefaultStack() *Stack {
-	return NewStack(defaultStackLength)
-}
-
-func (s *Stack) IsEmpty() bool {
+func (s *ArrayStack) IsEmpty() bool {
 	return len(s.elements) == 0
 }
 
-func (s *Stack) Pop() (interface{}, error) {
+func (s *ArrayStack) Pop() (interface{}, error) {
 	if s.IsEmpty() {
 		return nil, ErrStackUnderflow
 	}
@@ -43,7 +43,7 @@ func (s *Stack) Pop() (interface{}, error) {
 	return ret, nil
 }
 
-func (s *Stack) Push(element interface{}) error {
+func (s *ArrayStack) Push(element interface{}) error {
 	if len(s.elements) >= s.maxLength {
 		return ErrStackOverflow
 	}
@@ -53,6 +53,10 @@ func (s *Stack) Push(element interface{}) error {
 	return nil
 }
 
-func (s *Stack) List() []interface{} {
+func (s *ArrayStack) List() []interface{} {
 	return s.elements
+}
+
+func init() {
+	Register("array_stack", NewArrayStack)
 }

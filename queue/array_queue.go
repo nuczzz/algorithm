@@ -1,35 +1,35 @@
-package algorithm
+package queue
 
 import "errors"
 
-type Queue struct {
+type ArrayQueue struct {
 	maxLength int
 	elements  []interface{}
 }
 
-const defaultQueueLength = 3
+const defaultArrayQueueLength = 3
 
 var (
 	ErrQueueUnderflow = errors.New("queue underflow")
 	ErrQueueOverflow  = errors.New("queue overflow")
 )
 
-func NewQueue(length int) *Queue {
-	return &Queue{
+func NewArrayQueue(length int) Queue {
+	if length <= 0 {
+		length = defaultArrayQueueLength
+	}
+
+	return &ArrayQueue{
 		maxLength: length,
 		elements:  make([]interface{}, 0, length),
 	}
 }
 
-func NewDefaultQueue() *Queue {
-	return NewQueue(defaultQueueLength)
-}
-
-func (q *Queue) IsEmpty() bool {
+func (q *ArrayQueue) IsEmpty() bool {
 	return len(q.elements) == 0
 }
 
-func (q *Queue) Pop() (interface{}, error) {
+func (q *ArrayQueue) Pop() (interface{}, error) {
 	if q.IsEmpty() {
 		return nil, ErrQueueUnderflow
 	}
@@ -40,7 +40,7 @@ func (q *Queue) Pop() (interface{}, error) {
 	return ret, nil
 }
 
-func (q *Queue) Push(element interface{}) error {
+func (q *ArrayQueue) Push(element interface{}) error {
 	if len(q.elements) >= q.maxLength {
 		return ErrQueueOverflow
 	}
@@ -50,6 +50,10 @@ func (q *Queue) Push(element interface{}) error {
 	return nil
 }
 
-func (q *Queue) List() []interface{} {
+func (q *ArrayQueue) List() []interface{} {
 	return q.elements
+}
+
+func init() {
+	Register("array_queue", NewArrayQueue)
 }
