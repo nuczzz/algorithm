@@ -46,3 +46,12 @@ func TestArrayStack(t *testing.T) {
 
 	t.Log("TestNewDefaultStack success")
 }
+
+func TestNewStack(t *testing.T) {
+	stack, err := NewStack("array_stack", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Log(stack)
+}

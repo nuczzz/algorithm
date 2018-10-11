@@ -1,6 +1,8 @@
 package queue
 
-import "testing"
+import (
+	"testing"
+)
 
 const queueLength = 3
 
@@ -46,4 +48,13 @@ func TestNewArrayQueue(t *testing.T) {
 	t.Logf(">>pop element test success")
 
 	t.Log("TestNewDefaultQueue success")
+}
+
+func TestNewQueue(t *testing.T) {
+	queue, err := NewQueue("array_queue", 3)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Log(queue)
 }

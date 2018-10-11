@@ -1,6 +1,8 @@
 package queue
 
-import "errors"
+import (
+	"errors"
+)
 
 type ArrayQueue struct {
 	maxLength int

@@ -1,6 +1,8 @@
 package queue
 
-import "errors"
+import (
+	"errors"
+)
 
 type Queue interface {
 	IsEmpty() bool
@@ -19,8 +21,7 @@ var (
 )
 
 func Register(name string, instance Instance) error {
-	instance, ok := adapters[name]
-	if ok {
+	if _, ok := adapters[name]; ok {
 		return ErrQueueRegisterTwice
 	}
 

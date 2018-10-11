@@ -5,7 +5,7 @@ import "errors"
 type Stack interface {
 	IsEmpty() bool
 	Pop() (interface{}, error)
-	Push(element interface{}) error
+	Push(interface{}) error
 	List() []interface{}
 }
 
@@ -19,8 +19,7 @@ var (
 )
 
 func Register(name string, instance Instance) error {
-	instance, ok := adapters[name]
-	if ok {
+	if _, ok := adapters[name]; ok {
 		return ErrStackRegisterTwice
 	}
 
