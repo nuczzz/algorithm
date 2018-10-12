@@ -57,6 +57,10 @@ func (s *ArrayStack) List() []interface{} {
 	return s.elements
 }
 
+func (s *ArrayStack) Len() int {
+	return len(s.elements)
+}
+
 func init() {
 	Register("array_stack", NewArrayStack)
 }

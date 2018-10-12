@@ -58,24 +58,3 @@ func TestNewQueue(t *testing.T) {
 
 	t.Log(queue)
 }
-
-func TestNewStackQueue(t *testing.T) {
-	stack := NewStackQueue(3)
-
-	t.Log(">>push and stack element list:")
-	for i := 0; i < 3; i++ {
-		stack.Push(i)
-	}
-
-	list := stack.List()
-	for _, ele := range list {
-		t.Log(ele)
-	}
-
-	// pop test
-	t.Log(">>pop test:")
-	for i := 0; i < 3; i++ {
-		ele, _ := stack.Pop()
-		t.Log(ele)
-	}
-}

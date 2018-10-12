@@ -3,10 +3,20 @@ package stack
 import "errors"
 
 type Stack interface {
+	// is stack empty
 	IsEmpty() bool
+
+	// pop element from stack
 	Pop() (interface{}, error)
+
+	// push element to stack
 	Push(interface{}) error
+
+	// stack elements list
 	List() []interface{}
+
+	// length of stack elements
+	Len() int
 }
 
 type Instance func(int) Stack

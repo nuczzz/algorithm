@@ -1,16 +1,19 @@
-package queue
+package qs
 
-import "algorithm/stack"
+import (
+	"algorithm/queue"
+	"algorithm/stack"
+)
 
 // queue which is made up of stack
 type StackQueue struct {
-	stack1   stack.Stack
+	stack1 stack.Stack
 	stack2 stack.Stack
 }
 
 const defaultStackQueueLength = 3
 
-func NewStackQueue(length int) Queue {
+func NewStackQueue(length int) queue.Queue {
 	if length <= 0 {
 		length = defaultStackQueueLength
 	}
@@ -53,6 +56,11 @@ func (q *StackQueue) List() []interface{} {
 	return append(q.stack1.List(), q.stack2.List()...)
 }
 
+// StackQueue.Len() can bigger than q.stack1.maxLength
+func (q *StackQueue) Len() int {
+	return q.stack1.Len() + q.stack2.Len()
+}
+
 func init() {
-	Register("stack_queue", NewArrayQueue)
+	queue.Register("stack_queue", NewStackQueue)
 }

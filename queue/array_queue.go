@@ -56,6 +56,10 @@ func (q *ArrayQueue) List() []interface{} {
 	return q.elements
 }
 
+func (q *ArrayQueue) Len() int {
+	return len(q.elements)
+}
+
 func init() {
 	Register("array_queue", NewArrayQueue)
 }
