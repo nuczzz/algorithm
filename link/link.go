@@ -48,9 +48,10 @@ func ReverseLink(head *LinkNode) *LinkNode {
 	}
 
 	// two or more link node
-	var n1 *LinkNode
-	n2 := head
-	n3 := head.Next
+	// n1 default value is nil
+	var n1, n2, n3 *LinkNode
+	n2 = head
+	n3 = head.Next
 	for n3 != nil{
 		n2.Next = n1
 
