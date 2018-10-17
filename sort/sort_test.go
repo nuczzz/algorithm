@@ -42,3 +42,9 @@ func TestCocktailSort(t *testing.T) {
 	CocktailSort(data)
 	t.Log(data)
 }
+
+func TestSelectionSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	SelectionSort(data)
+	t.Log(data)
+}
