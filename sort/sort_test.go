@@ -3,6 +3,7 @@ package sort
 import (
 	"testing"
 	sysSort "sort"
+	"fmt"
 )
 
 type Array []int
@@ -29,4 +30,10 @@ func TestMySort(t *testing.T) {
 	data := Array{4, 6, 5, 3, 2, 1}
 	Sort(data)
 	t.Log(data)
+}
+
+func TestBubbleSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	BubbleSort(data)
+	fmt.Println(data)
 }
