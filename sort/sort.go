@@ -9,4 +9,6 @@ type SortInterface interface {
 func Sort(data SortInterface) {
 	InsertionSort(data)
 	//BubbleSort(data)
+	//CocktailSort(data)
+	//SelectionSort(data)
 }
