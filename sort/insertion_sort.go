@@ -11,3 +11,25 @@ func InsertionSort(data SortInterface) {
 		}
 	}
 }
+
+func BinaryInsertionSort(data SortInterface) {
+	if data.Len() > 1 {
+		for j := 1; j < data.Len(); j++ {
+			left, middle, right := 0, 0, j-1
+			for left < right {
+				middle = (left + right) / 2
+				if data.Less(middle, j) {
+					left = middle+1
+				} else {
+					right = middle-1
+				}
+			}
+
+			for i := j; i > left; i-- {
+				if data.Less(i, i-1) {
+					data.Swap(i, i-1)
+				}
+			}
+		}
+	}
+}
