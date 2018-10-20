@@ -11,4 +11,6 @@ func Sort(data SortInterface) {
 	//BubbleSort(data)
 	//CocktailSort(data)
 	//SelectionSort(data)
+	//BinaryInsertionSort(data)
+	//ShellSort(data)
 }
