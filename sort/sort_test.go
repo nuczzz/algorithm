@@ -54,3 +54,9 @@ func TestBinaryInsertionSort(t *testing.T) {
 	BinaryInsertionSort(data)
 	t.Log(data)
 }
+
+func TestShellSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	ShellSort(data)
+	t.Log(data)
+}

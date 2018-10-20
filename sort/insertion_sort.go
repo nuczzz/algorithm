@@ -33,3 +33,15 @@ func BinaryInsertionSort(data SortInterface) {
 		}
 	}
 }
+
+func ShellSort(data SortInterface) {
+	for gap := data.Len()/2; gap > 0; gap/=2 {
+		for i := gap; i < data.Len(); i++ {
+			for j := i; j-gap >= 0; j -= gap {
+				if data.Less(j, j-gap) {
+					data.Swap(j-gap, j)
+				}
+			}
+		}
+	}
+}
