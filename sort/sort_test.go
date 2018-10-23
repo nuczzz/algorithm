@@ -3,7 +3,6 @@ package sort
 import (
 	"testing"
 	sysSort "sort"
-	"sync"
 )
 
 type Array []int
@@ -70,9 +69,6 @@ func TestQuickSort(t *testing.T) {
 
 func TestQuickSortGoroutine(t *testing.T) {
 	data := Array{4, 6, 5, 3, 2, 1}
-	wg := &sync.WaitGroup{}
-	wg.Add(1)
-	QuickSortGoroutine(data, 0, data.Len()-1, wg)
-	wg.Wait()
+	QuickSortGoroutine(data, 0, data.Len()-1, nil)
 	t.Log(data)
 }

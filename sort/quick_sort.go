@@ -1,7 +1,6 @@
 package sort
 
 import (
-	"fmt"
 	"sync"
 )
 
@@ -24,21 +23,21 @@ func partition(data SortInterface, start, end int) int {
 			smallCount++
 			if smallCount != i {
 				data.Swap(smallCount, i)
-				fmt.Println(data)
 			}
 		}
 	}
 
 	if smallCount+1 != end {
 		data.Swap(smallCount+1, end)
-		fmt.Println(data)
 	}
 
 	return smallCount + 1
 }
 
 func QuickSortGoroutine(data SortInterface, start, end int, wg *sync.WaitGroup) {
-	defer wg.Done()
+	if wg != nil {
+		defer wg.Done()
+	}
 
 	if start < end {
 		q := partition(data, start, end)
