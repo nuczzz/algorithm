@@ -3,6 +3,7 @@ package sort
 import (
 	"testing"
 	sysSort "sort"
+	"sync"
 )
 
 type Array []int
@@ -58,5 +59,20 @@ func TestBinaryInsertionSort(t *testing.T) {
 func TestShellSort(t *testing.T) {
 	data := Array{4, 6, 5, 3, 2, 1}
 	ShellSort(data)
+	t.Log(data)
+}
+
+func TestQuickSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	QuickSort(data, 0, data.Len()-1)
+	t.Log(data)
+}
+
+func TestQuickSortGoroutine(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	wg := &sync.WaitGroup{}
+	wg.Add(1)
+	QuickSortGoroutine(data, 0, data.Len()-1, wg)
+	wg.Wait()
 	t.Log(data)
 }
