@@ -72,3 +72,15 @@ func TestQuickSortGoroutine(t *testing.T) {
 	QuickSortGoroutine(data, 0, data.Len()-1, nil)
 	t.Log(data)
 }
+
+func TestMergeSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	MergeSort(data, 0, data.Len()-1)
+	t.Log(data)
+}
+
+func TestHeapSort(t *testing.T) {
+	data := Array{4, 6, 5, 3, 2, 1}
+	HeapSort(data)
+	t.Log(data)
+}
