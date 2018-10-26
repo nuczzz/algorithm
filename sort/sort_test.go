@@ -67,9 +67,9 @@ func TestQuickSort(t *testing.T) {
 	t.Log(data)
 }
 
-func TestQuickSortGoroutine(t *testing.T) {
+func TestQuickSortWithGoroutine(t *testing.T) {
 	data := Array{4, 6, 5, 3, 2, 1}
-	QuickSortGoroutine(data, 0, data.Len()-1, nil)
+	QuickSortWithGoroutine(data, 0, data.Len()-1, nil)
 	t.Log(data)
 }
 

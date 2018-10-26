@@ -34,7 +34,7 @@ func partition(data SortInterface, start, end int) int {
 	return smallCount + 1
 }
 
-func QuickSortGoroutine(data SortInterface, start, end int, wg *sync.WaitGroup) {
+func QuickSortWithGoroutine(data SortInterface, start, end int, wg *sync.WaitGroup) {
 	if wg != nil {
 		defer wg.Done()
 	}
@@ -45,8 +45,8 @@ func QuickSortGoroutine(data SortInterface, start, end int, wg *sync.WaitGroup) 
 		// todo: optimized by left and right data length
 		newWg := &sync.WaitGroup{}
 		newWg.Add(2)
-		go QuickSortGoroutine(data, start, q-1, newWg)
-		go QuickSortGoroutine(data, q+1, end, newWg)
+		go QuickSortWithGoroutine(data, start, q-1, newWg)
+		go QuickSortWithGoroutine(data, q+1, end, newWg)
 		newWg.Wait()
 	}
 }
