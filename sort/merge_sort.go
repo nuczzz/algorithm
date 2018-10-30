@@ -44,6 +44,7 @@ func merge(data []int, start, m, end int) {
 		}
 
 		if data[p1] < data[p2] { //取左边数组数据
+			//todo:serious bug
 			if p1 < m { //p1还在左侧数组范围内
 				p1++
 				leftLength--
