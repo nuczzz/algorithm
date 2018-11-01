@@ -45,6 +45,15 @@ func merge(data []int, start, m, end int) {
 
 		if data[p1] < data[p2] { //取左边数组数据
 			//todo:serious bug
+			//todo:加上preP1可能可以解决这个问题
+			/*
+			                 ---------------
+			                 |              |
+			         --------|-------       |
+			         |       |      |       |
+			         |-----> |------>  ----->
+			         pos     preP1     p1
+			*/
 			if p1 < m { //p1还在左侧数组范围内
 				p1++
 				leftLength--
