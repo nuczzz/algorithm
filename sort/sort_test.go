@@ -3,6 +3,8 @@ package sort
 import (
 	"testing"
 	sysSort "sort"
+	"math/rand"
+	"time"
 )
 
 type Array []int
@@ -77,6 +79,42 @@ func TestMergeSort(t *testing.T) {
 	data := Array{4, 6, 5, 3, 2, 1}
 	MergeSort(data, 0, data.Len()-1)
 	t.Log(data)
+}
+
+func TestZMerge(t *testing.T) {
+	data := Array{9, 31, 31, 37, 47, 0, 6, 18, 25, 40}
+	zMerge(data, 0, 5, 9)
+	t.Log(data)
+}
+
+func TestMergeAndQuickSort(t *testing.T) {
+	num := 20
+	data := make(Array, num)
+	for i := 0; i < num; i++ {
+		data[i] = rand.Intn(50)
+	}
+	t.Log(data)
+
+	data1 := make(Array, num)
+	data2 := make(Array, num)
+	copy(data1, data)
+	copy(data2, data)
+
+	var now int64
+	/*now = time.Now().UnixNano()
+	t.Log(now)
+	QuickSort(data1, 0, len(data)-1)
+	now = time.Now().UnixNano()
+	t.Log(now)
+	//t.Log(data1)
+	t.Log("\n")*/
+
+	now = time.Now().UnixNano()
+	t.Log(now)
+	MergeSort(data2, 0, len(data)-1)
+	now = time.Now().UnixNano()
+	t.Log(now)
+	t.Log(data2)
 }
 
 func TestHeapSort(t *testing.T) {

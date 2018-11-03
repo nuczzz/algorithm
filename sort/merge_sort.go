@@ -1,40 +1,57 @@
 package sort
 
-func MergeSort(data SortInterface, start, m, end int) {
+import "fmt"
 
+func MergeSort(data SortInterface, start, end int) {
+	if start < end {
+		m := (end + start) >> 1
+		MergeSort(data, start, m)
+		MergeSort(data, m+1, end)
+		zMerge(data, start, m+1, end)
+		fmt.Println(data)
+	}
 }
 
-// left: data[start:m-1], right: data[m, end]
-// p2最终为end+1
-// p1最大为p2，p1不可能越界
-func zmerge(data []int, start, m, end int) {
+// left: data[start...m-1], right: data[m...end]
+// todo: fix bug
+func zMerge(data SortInterface, start, m, end int) {
+	fmt.Println()
+	fmt.Println(start)
+	fmt.Println(m)
+	fmt.Println(end)
+	if m > end {
+		return
+	}
+
 	preP1, p1, p2 := start, start, m
 	leftLength := m - start
-	for pos := start - 1; leftLength > 0; pos++ {
+	//var count int
+	for pos := start; leftLength > 0; pos++ {
+		fmt.Println("*****")
+		fmt.Println(pos)
+		fmt.Println(preP1)
+		fmt.Println(p1)
+		fmt.Println(p2)
+		fmt.Println(data)
+		fmt.Println("****")
+		fmt.Println()
+		//count++
 		if p2 > end {
-			if p1 < m {
-				//impossible
-			} else if pos+1 == p1 {
+			if pos == p1 {
 				break
 			} else {
 				if preP1 == p1 {
-					data[pos+1], data[p1] = data[p1], data[pos+1]
-					if pos+1 == preP1 {
-						preP1++
-					}
-
-					if p1 < end {
-						p1++
+					data.Swap(pos, p1)
+					if p1 == end {
+						p1 = pos+1
 						preP1 = p1
 					} else {
-						//do nothing
+						p1++
+						preP1 = p1
 					}
 				} else { //preP1 != p1
-					if pos+1 == preP1 {
-						data[pos+1], data[p1] = data[p1], data[pos+1]
-					} else {
-						data[pos+1], data[preP1], data[p1] = data[p1], data[pos+1], data[preP1]
-					}
+					data.Swap(pos, preP1)
+					data.Swap(pos, p1)
 					preP1++
 					if p1 < end {
 						p1++
@@ -46,56 +63,64 @@ func zmerge(data []int, start, m, end int) {
 			continue
 		}
 
-		if data[p1] < data[p2] {
+		if data.Less(p1, p2) {
 			leftLength--
 
 			if p1 < m {
 				p1++
+				preP1 = p1
 			} else {
 				if preP1 == p1 {
-					data[pos+1], data[p1] = data[p1], data[pos+1]
-					if p2-p1 == 1 {
-						//do nothing
-						if pos < m {
+					data.Swap(pos, p1)
+					if pos < m {
+						if p1+1 == p2 {
 							p1 = m
 						} else {
-							p1 = pos + 1
+							p1++
 						}
+						preP1 = p1
 					} else {
-						p1++
+						if p1+1 < p2 {
+							p1++
+							//don't move preP1
+						}
 					}
-					preP1 = p1
 				} else {
-					data[pos+1], data[preP1], data[p1] = data[p1], data[pos+1], data[preP1]
-					preP1++
-					if p2-p1 == 1 {
-						//do nothing
+					if pos < m && preP1 > m {
+						data.Swap(pos, preP1)
+						data.Swap(pos, p1)
+						preP1++
 					} else {
+						data.Swap(pos, p1)
+					}
+
+					if p1+1 < p2 {
 						p1++
+					} else {
+						//do nothing
 					}
 				}
 			}
 		} else {
 			if p1 < m {
-				data[p1], data[p2] = data[p2], data[p1]
+				data.Swap(p1, p2)
 				p1 = p2
 				preP1 = p1
 			} else {
 				if preP1 == p1 {
-					data[pos+1], data[p1], data[p2] = data[p2], data[pos+1], data[p1]
+					data.Swap(pos, p1)
+					data.Swap(pos, p2)
 					p1 = p2
+					//don't move preP1
 				} else {
-					data[pos+1], data[preP1], data[p2] = data[p2], data[pos+1], data[preP1]
-					if p1-preP1 == 1 {
-						// do nothing
-					} else {
-						preP1++
-					}
+					data.Swap(pos, preP1)
+					data.Swap(pos, p2)
+					//preP1++
 				}
 			}
 
 			p2++
 		}
 	}
+	//fmt.Println(count)
 }
-
