@@ -13,13 +13,9 @@ func MergeSort(data SortInterface, start, end int) {
 }
 
 // left: data[start...m-1], right: data[m...end]
-// todo: fix bug
+// todo: error code, do not use it!!!
 func zMerge(data SortInterface, start, m, end int) {
-	fmt.Println()
-	fmt.Println(start)
-	fmt.Println(m)
-	fmt.Println(end)
-	if m > end {
+/*	if m > end {
 		return
 	}
 
@@ -27,14 +23,6 @@ func zMerge(data SortInterface, start, m, end int) {
 	leftLength := m - start
 	//var count int
 	for pos := start; leftLength > 0; pos++ {
-		fmt.Println("*****")
-		fmt.Println(pos)
-		fmt.Println(preP1)
-		fmt.Println(p1)
-		fmt.Println(p2)
-		fmt.Println(data)
-		fmt.Println("****")
-		fmt.Println()
 		//count++
 		if p2 > end {
 			if pos == p1 {
@@ -121,6 +109,5 @@ func zMerge(data SortInterface, start, m, end int) {
 
 			p2++
 		}
-	}
-	//fmt.Println(count)
+	}*/
 }
