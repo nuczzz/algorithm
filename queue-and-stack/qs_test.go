@@ -1,4 +1,4 @@
-package qs
+package queue_and_stack
 
 import (
 	"testing"
