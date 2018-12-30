@@ -1,8 +1,8 @@
 package bstree
 
 import (
-	"testing"
 	"fmt"
+	"testing"
 )
 
 /*
@@ -52,4 +52,25 @@ func TestInOrder(t *testing.T) {
 func TestSearch(t *testing.T) {
 	root := initTestBSTree()
 	fmt.Println(Search(root, 9))
+}
+
+func TestMinimum(t *testing.T) {
+	root := initTestBSTree()
+	fmt.Println(Minimum(root))
+}
+
+func TestMaximum(t *testing.T) {
+	root := initTestBSTree()
+	fmt.Println(Maximum(root))
+}
+
+func TestPrecursor(t *testing.T) {
+	root := initTestBSTree()
+	fmt.Println(Precursor(root.left.left.left))//2
+	fmt.Println(Precursor(root.left.left.right))//4
+}
+
+func TestSuccessor(t *testing.T) {
+	root := initTestBSTree()
+	fmt.Println(Successor(root.left.right.right)) //13
 }

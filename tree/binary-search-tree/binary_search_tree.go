@@ -1,6 +1,8 @@
 package bstree
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type BSNode struct {
 	data int
@@ -40,4 +42,58 @@ func Search(root *BSNode, data int) *BSNode {
 		return Search(root.right, data)
 	}
 	return Search(root.left, data)
+}
+
+func Minimum(root *BSNode) *BSNode {
+	if root == nil {
+		return nil
+	}
+	if root.left != nil {
+		return Minimum(root.left)
+	}
+	return root
+}
+
+func Maximum(root *BSNode) *BSNode {
+	if root == nil {
+		return nil
+	}
+	if root.right != nil {
+		return Maximum(root.right)
+	}
+	return root
+}
+
+func Precursor(node *BSNode) *BSNode {
+	if node.left != nil {
+		return Maximum(node.left)
+	}
+	child := node
+	parent := node.parent
+	for parent != nil && child == parent.left {
+		child = parent
+		parent = parent.parent
+	}
+	return parent
+}
+
+func Successor(node *BSNode) *BSNode {
+	if node.right != nil {
+		return Minimum(node.right)
+	}
+	child := node
+	parent := node.parent
+	for parent != nil && child == parent.right {
+		child = parent
+		parent = parent.parent
+	}
+	return parent
+}
+
+func (bs *BSNode) Insert(node *BSNode) {
+	//todo
+}
+
+func (bs *BSNode) Delete(node *BSNode) {
+	//todo
 }
