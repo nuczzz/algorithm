@@ -16,60 +16,60 @@ func NewBSNode(data int) *BSNode {
 	return &BSNode{data: data}
 }
 
-func (bs *BSNode) SetLeft(left *BSNode) {
-	bs.left = left
-	left.parent = bs
+func (root *BSNode) SetLeft(left *BSNode) {
+	root.left = left
+	left.parent = root
 }
 
-func (bs *BSNode) SetRight(right *BSNode) {
-	bs.right = right
-	right.parent = bs
+func (root *BSNode) SetRight(right *BSNode) {
+	root.right = right
+	right.parent = root
 }
 
-func InOrder(root *BSNode) {
+func (root *BSNode)InOrder() {
 	if root != nil {
-		InOrder(root.left)
+		root.left.InOrder()
 		fmt.Println(root.data)
-		InOrder(root.right)
+		root.right.InOrder()
 	}
 }
 
-func Search(root *BSNode, data int) *BSNode {
+func (root *BSNode) Search(data int) *BSNode {
 	if root == nil || root.data == data {
 		return root
 	}
 	if root.data < data {
-		return Search(root.right, data)
+		return root.right.Search(data)
 	}
-	return Search(root.left, data)
+	return root.left.Search(data)
 }
 
-func Minimum(root *BSNode) *BSNode {
+func (root *BSNode)Minimum() *BSNode {
 	if root == nil {
 		return nil
 	}
 	if root.left != nil {
-		return Minimum(root.left)
+		return root.left.Minimum()
 	}
 	return root
 }
 
-func Maximum(root *BSNode) *BSNode {
+func (root *BSNode)Maximum() *BSNode {
 	if root == nil {
 		return nil
 	}
 	if root.right != nil {
-		return Maximum(root.right)
+		return root.right.Maximum()
 	}
 	return root
 }
 
-func Precursor(node *BSNode) *BSNode {
-	if node.left != nil {
-		return Maximum(node.left)
+func (root *BSNode)Precursor() *BSNode {
+	if root.left != nil {
+		return root.left.Maximum()
 	}
-	child := node
-	parent := node.parent
+	child := root
+	parent := root.parent
 	for parent != nil && child == parent.left {
 		child = parent
 		parent = parent.parent
@@ -77,12 +77,12 @@ func Precursor(node *BSNode) *BSNode {
 	return parent
 }
 
-func Successor(node *BSNode) *BSNode {
-	if node.right != nil {
-		return Minimum(node.right)
+func (root *BSNode)Successor() *BSNode {
+	if root.right != nil {
+		return root.right.Minimum()
 	}
-	child := node
-	parent := node.parent
+	child := root
+	parent := root.parent
 	for parent != nil && child == parent.right {
 		child = parent
 		parent = parent.parent
@@ -90,10 +90,26 @@ func Successor(node *BSNode) *BSNode {
 	return parent
 }
 
-func (bs *BSNode) Insert(node *BSNode) {
-	//todo
+//root can not be nil
+func (root *BSNode) Insert(node *BSNode) {
+	parent := root
+	var aim *BSNode
+	for parent != nil {
+		aim = parent
+		if node.data < parent.data {
+			parent = parent.left
+		} else {
+			parent = parent.right
+		}
+	}
+	node.parent = aim
+	if node.data < aim.data {
+		aim.left = node
+	} else {
+		aim.right = node
+	}
 }
 
-func (bs *BSNode) Delete(node *BSNode) {
+func (root *BSNode) Delete(node *BSNode) {
 	//todo
 }
