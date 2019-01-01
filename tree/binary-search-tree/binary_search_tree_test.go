@@ -80,3 +80,11 @@ func TestInsert(t *testing.T) {
 	tree.Insert(NewBSNode(1))
 	tree.InOrder()
 }
+
+func TestDelete(t *testing.T) {
+	tree := BSTree{root: initTestBSTree()}
+	tree.InOrder()
+	fmt.Println("-----------")
+	tree.Delete(tree.Search(7))
+	tree.InOrder()
+}

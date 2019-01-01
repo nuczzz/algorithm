@@ -132,6 +132,35 @@ func (tree *BSTree) Insert(node *BSNode) {
 	}
 }
 
+//transplant node b as node a in tree
+func (tree *BSTree)transplant(a, b *BSNode) {
+	if a == tree.root {
+		tree.root = b
+	} else if a == a.parent.left {
+		a.parent.left = b
+	} else {
+		a.parent.right = b
+	}
+
+	if b != nil {
+		b.parent = a.parent
+	}
+}
+
 func (tree *BSTree) Delete(node *BSNode) {
-	//todo
+	if node.left == nil {
+		tree.transplant(node, node.right)
+	} else if node.right == nil {
+		tree.transplant(node, node.left)
+	} else {
+		min := node.minimum()
+		if node.left == min {
+			tree.transplant(min, min.right)
+			min.right = node.right
+			min.right.parent = min
+		}
+		tree.transplant(node, min)
+		min.left = node.left
+		min.left.parent = min
+	}
 }
