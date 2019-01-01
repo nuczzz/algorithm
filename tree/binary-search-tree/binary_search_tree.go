@@ -153,8 +153,8 @@ func (tree *BSTree) Delete(node *BSNode) {
 	} else if node.right == nil {
 		tree.transplant(node, node.left)
 	} else {
-		min := node.minimum()
-		if node.left == min {
+		min := node.right.minimum()
+		if min.parent != node {
 			tree.transplant(min, min.right)
 			min.right = node.right
 			min.right.parent = min
@@ -162,5 +162,23 @@ func (tree *BSTree) Delete(node *BSNode) {
 		tree.transplant(node, min)
 		min.left = node.left
 		min.left.parent = min
+	}
+}
+
+func (tree *BSTree) DeleteWithMax(node *BSNode) {
+	if node.left == nil {
+		tree.transplant(node, node.right)
+	} else if node.right == nil {
+		tree.transplant(node, node.left)
+	} else {
+		max := node.left.maximum()
+		if max.parent != node {
+			tree.transplant(max, max.left)
+			max.left = node.left
+			max.left.parent = max
+		}
+		tree.transplant(node, max)
+		max.right = node.right
+		max.right.parent = max
 	}
 }

@@ -66,8 +66,8 @@ func TestMaximum(t *testing.T) {
 
 func TestPrecursor(t *testing.T) {
 	tree := BSTree{root: initTestBSTree()}
-	fmt.Println(tree.root.left.left.left.Precursor())//2
-	fmt.Println(tree.root.left.left.right.Precursor())//4
+	fmt.Println(tree.root.left.left.left.Precursor())  //2
+	fmt.Println(tree.root.left.left.right.Precursor()) //4
 }
 
 func TestSuccessor(t *testing.T) {
@@ -76,15 +76,29 @@ func TestSuccessor(t *testing.T) {
 }
 
 func TestInsert(t *testing.T) {
-	tree := BSTree{root: initTestBSTree()}
-	tree.Insert(NewBSNode(1))
+	var tree BSTree
+	tree.Insert(NewBSNode(10))
+	tree.InOrder()
+	fmt.Println("---------")
+	tree.Insert(NewBSNode(5))
+	tree.Insert(NewBSNode(13))
+	tree.Insert(NewBSNode(3))
+	tree.Insert(NewBSNode(2))
 	tree.InOrder()
 }
 
-func TestDelete(t *testing.T) {
+func TestDeleteWithMin(t *testing.T) {
 	tree := BSTree{root: initTestBSTree()}
 	tree.InOrder()
 	fmt.Println("-----------")
 	tree.Delete(tree.Search(7))
+	tree.InOrder()
+}
+
+func TestDeleteWithMax(t *testing.T) {
+	tree := BSTree{root: initTestBSTree()}
+	tree.InOrder()
+	fmt.Println("-----------")
+	tree.DeleteWithMax(tree.Search(7))
 	tree.InOrder()
 }
