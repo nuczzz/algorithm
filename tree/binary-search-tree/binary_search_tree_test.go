@@ -45,38 +45,38 @@ func initTestBSTree() *BSNode {
 }
 
 func TestInOrder(t *testing.T) {
-	root := initTestBSTree()
-	root.InOrder()
+	tree := BSTree{root: initTestBSTree()}
+	tree.InOrder()
 }
 
 func TestSearch(t *testing.T) {
-	root := initTestBSTree()
-	fmt.Println(root.Search(9))
+	tree := BSTree{root: initTestBSTree()}
+	fmt.Println(tree.Search(9))
 }
 
 func TestMinimum(t *testing.T) {
-	root := initTestBSTree()
-	fmt.Println(root.Minimum())
+	tree := BSTree{root: initTestBSTree()}
+	fmt.Println(tree.Minimum())
 }
 
 func TestMaximum(t *testing.T) {
-	root := initTestBSTree()
-	fmt.Println(root.Maximum())
+	tree := BSTree{root: initTestBSTree()}
+	fmt.Println(tree.Maximum())
 }
 
 func TestPrecursor(t *testing.T) {
-	root := initTestBSTree()
-	fmt.Println(root.left.left.left.Precursor())//2
-	fmt.Println(root.left.left.right.Precursor())//4
+	tree := BSTree{root: initTestBSTree()}
+	fmt.Println(tree.root.left.left.left.Precursor())//2
+	fmt.Println(tree.root.left.left.right.Precursor())//4
 }
 
 func TestSuccessor(t *testing.T) {
-	root := initTestBSTree()
-	fmt.Println(root.left.right.right.Successor()) //13
+	tree := BSTree{root: initTestBSTree()}
+	fmt.Println(tree.root.left.right.right.Successor()) //13
 }
 
 func TestInsert(t *testing.T) {
-	root := NewBSNode(1)
-	root.Insert(NewBSNode(2))
-	root.InOrder()
+	tree := BSTree{root: initTestBSTree()}
+	tree.Insert(NewBSNode(1))
+	tree.InOrder()
 }
