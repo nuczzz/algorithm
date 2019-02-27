@@ -1,2 +1,2 @@
 # algorithm
-Basical algorithm written in golang.
+Basic algorithm written in golang.
