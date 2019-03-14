@@ -1,5 +1,5 @@
 package floyd
 
-func floyd() {
+func Floyd() {
 
 }
