@@ -1,5 +1,6 @@
 package floyd
 
-func Floyd() {
-
+func Floyd(srcMatrix [][]int) (pathMatrix [][]int) {
+	//todo
+	return nil
 }
